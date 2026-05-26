@@ -1,212 +1,258 @@
-# VLDS - Vital Life Data System
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WeCare - Healthcare Website</title>
 
-A comprehensive health tracking web application built with Flask and Python. VLDS allows users to monitor their health metrics, track progress, and achieve their wellness goals.
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
 
-## 🌟 Features
+    body{
+      background:#f4f9ff;
+      color:#333;
+    }
 
-- **User Authentication**: Secure registration and login system
-- **Health Records**: Track weight, blood pressure, heart rate, and blood sugar levels
-- **BMI Calculator**: Automatic BMI calculation based on measurements
-- **Personal Profile**: Manage health information and wellness goals
-- **Analytics Dashboard**: Interactive charts and data visualization
-- **Health Tips**: Personalized wellness advice
-- **Responsive Design**: Beautiful UI with Bootstrap 5
-- **Data Security**: Encrypted passwords and secure sessions
+    header{
+      background:#0d6efd;
+      color:white;
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
 
-## 🛠️ Technology Stack
+    header h1{
+      font-size:32px;
+    }
 
-- **Backend**: Flask, Flask-SQLAlchemy, Flask-Login
-- **Database**: SQLite (easily upgradable to PostgreSQL)
-- **Frontend**: HTML5, Bootstrap 5, JavaScript
-- **Charts**: Chart.js
-- **Forms**: WTForms with validation
-- **Security**: Werkzeug password hashing
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:18px;
+    }
 
-## 📋 Prerequisites
+    .hero{
+      height:90vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      background:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+      url('https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=1200') center/cover;
+      color:white;
+    }
 
-- Python 3.8+
-- pip (Python package manager)
-- Virtual environment (recommended)
+    .hero h2{
+      font-size:55px;
+      margin-bottom:20px;
+    }
 
-## 🚀 Installation & Setup
+    .hero p{
+      font-size:22px;
+      margin-bottom:30px;
+    }
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/nandini10149/VLDS.git
-cd VLDS
-```
+    .btn{
+      padding:15px 30px;
+      background:#0d6efd;
+      border:none;
+      color:white;
+      font-size:18px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
 
-### 2. Create Virtual Environment
-```bash
-# On Windows
-python -m venv venv
-venv\Scripts\activate
+    .btn:hover{
+      background:#084298;
+    }
 
-# On macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-```
+    .services{
+      padding:80px 50px;
+      text-align:center;
+    }
 
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+    .services h2{
+      font-size:40px;
+      margin-bottom:50px;
+      color:#0d6efd;
+    }
 
-### 4. Run the Application
-```bash
-python main.py
-```
+    .service-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
 
-The application will start at `http://localhost:5000`
+    .card{
+      background:white;
+      padding:30px;
+      border-radius:15px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
 
-## 📁 Project Structure
+    .card:hover{
+      transform:translateY(-10px);
+    }
 
-```
-VLDS/
-├── app/
-│   ├── __init__.py          # App factory
-│   ├── models.py            # Database models
-│   ├── forms.py             # WTForms definitions
-│   └── routes.py            # Application routes
-├── templates/               # HTML templates
-│   ├── base.html
-│   ├── index.html
-│   ├── register.html
-│   ├── login.html
-│   ├── dashboard.html
-│   ├── health_records.html
-│   ├── profile.html
-│   ├── analytics.html
-│   └── about.html
-├── static/
-│   └── css/
-│       └── style.css        # Custom CSS
-├── config.py                # Configuration
-├── main.py                  # Entry point
-└── requirements.txt         # Dependencies
-```
+    .card h3{
+      margin-bottom:15px;
+      color:#0d6efd;
+    }
 
-## 🎯 Usage Guide
+    .about{
+      padding:80px 50px;
+      background:white;
+      text-align:center;
+    }
 
-### 1. Register a New Account
-- Click "Sign Up" on the home page
-- Fill in your details (username, email, password)
-- Create your account
+    .about h2{
+      font-size:40px;
+      margin-bottom:20px;
+      color:#0d6efd;
+    }
 
-### 2. Complete Your Profile
-- Go to Profile page
-- Add your personal information
-- Set your health goals
+    .contact{
+      padding:80px 50px;
+      text-align:center;
+    }
 
-### 3. Add Health Records
-- Navigate to Health Records
-- Enter your current measurements
-- Save your record
+    .contact h2{
+      font-size:40px;
+      margin-bottom:30px;
+      color:#0d6efd;
+    }
 
-### 4. Track Progress
-- View your Dashboard for quick stats
-- Check Analytics for detailed charts
-- Monitor trends over time
+    form{
+      max-width:500px;
+      margin:auto;
+    }
 
-## 📊 Health Metrics Tracked
+    input, textarea{
+      width:100%;
+      padding:15px;
+      margin:10px 0;
+      border:1px solid #ccc;
+      border-radius:8px;
+    }
 
-- **Weight** (kg)
-- **Blood Pressure** (Systolic/Diastolic)
-- **Heart Rate** (bpm)
-- **Blood Sugar** (mg/dL)
-- **BMI** (calculated automatically)
+    footer{
+      background:#0d6efd;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:50px;
+    }
 
-## 🔒 Security Features
+    @media(max-width:768px){
+      .hero h2{
+        font-size:38px;
+      }
 
-- Encrypted password storage using Werkzeug
-- Secure session management with Flask-Login
-- CSRF protection with Flask-WTF
-- User authentication required for protected routes
-- Database ORM to prevent SQL injection
+      .hero p{
+        font-size:18px;
+      }
 
-## 🌐 API Routes
+      header{
+        flex-direction:column;
+      }
 
-### Authentication
-- `GET /auth/register` - Registration page
-- `POST /auth/register` - Submit registration
-- `GET /auth/login` - Login page
-- `POST /auth/login` - Submit login
-- `GET /auth/logout` - Logout user
+      nav{
+        margin-top:15px;
+      }
+    }
+  </style>
+</head>
 
-### Main
-- `GET /` - Home page
-- `GET /dashboard` - User dashboard
-- `GET /about` - About page
+<body>
 
-### Health
-- `GET /health/profile` - User profile
-- `POST /health/profile` - Update profile
-- `GET /health/records` - Health records list
-- `POST /health/records` - Add new record
-- `POST /health/record/<id>/delete` - Delete record
-- `GET /health/analytics` - Analytics dashboard
+  <header>
+    <h1>WeCare</h1>
 
-## 💡 Sample Data
+    <nav>
+      <a href="#">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-On first run, the application automatically loads sample health tips in these categories:
-- Nutrition
-- Exercise
-- Mental Health
+  <section class="hero">
+    <h2>Your Health, Our Priority</h2>
+    <p>Providing trusted healthcare services for your family.</p>
 
-## 🔄 Future Enhancements
+    <button class="btn" onclick="showMessage()">
+      Book Appointment
+    </button>
+  </section>
 
-- [ ] Email notifications
-- [ ] Export data to PDF
-- [ ] Mobile app
-- [ ] Doctor appointments booking
-- [ ] Medication reminders
-- [ ] Social features (share progress)
-- [ ] AI-powered health insights
+  <section class="services" id="services">
+    <h2>Our Services</h2>
 
-## 📝 Database Models
+    <div class="service-box">
 
-### User
-- username, email, password_hash
-- first_name, last_name, age
-- height, target_weight
-- timestamps
+      <div class="card">
+        <h3>General Checkup</h3>
+        <p>Regular health checkups for better living.</p>
+      </div>
 
-### HealthRecord
-- weight, blood_pressure, heart_rate
-- blood_sugar, notes
-- user_id (foreign key)
-- timestamp
+      <div class="card">
+        <h3>Emergency Care</h3>
+        <p>24/7 emergency support and ambulance service.</p>
+      </div>
 
-### HealthTip
-- title, content
-- category
-- timestamp
+      <div class="card">
+        <h3>Online Consultation</h3>
+        <p>Consult experienced doctors from your home.</p>
+      </div>
 
-## 🤝 Contributing
+      <div class="card">
+        <h3>Medicine Delivery</h3>
+        <p>Get medicines delivered at your doorstep.</p>
+      </div>
 
-Contributions are welcome! Feel free to submit issues and pull requests.
+    </div>
+  </section>
 
-## 📄 License
+  <section class="about" id="about">
+    <h2>About WeCare</h2>
 
-This project is open source and available under the MIT License.
+    <p>
+      WeCare is a healthcare platform focused on providing
+      affordable and quality medical services to everyone.
+    </p>
+  </section>
 
-## 👥 Author
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
 
-**Nandini Sharma**
-- GitHub: [@nandini10149](https://github.com/nandini10149)
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message"></textarea>
 
-## 📧 Support
+      <button class="btn">Send Message</button>
+    </form>
+  </section>
 
-For support, issues, or questions, please open an issue on GitHub.
+  <footer>
+    <p>© 2026 WeCare Healthcare. All Rights Reserved.</p>
+  </footer>
 
-## 🙏 Acknowledgments
+  <script>
+    function showMessage(){
+      alert("Appointment booking feature coming soon!");
+    }
+  </script>
 
-- Flask documentation
-- Bootstrap for responsive design
-- Chart.js for data visualization
-
----
-
-**Made with ❤️ for your health and wellness**
-
-Start tracking your health today with VLDS!
+</body>
+</html>
